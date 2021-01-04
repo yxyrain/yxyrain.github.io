@@ -163,6 +163,243 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/04/360%E6%90%9C%E7%B4%A2%E6%9C%8D%E5%8A%A1%E5%8C%BA%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XiaoyuYe">
+      <meta itemprop="description" content="众人皆醒我独醉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rain#0x7c00's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/04/360%E6%90%9C%E7%B4%A2%E6%9C%8D%E5%8A%A1%E5%8C%BA%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">360搜索服务区端开发实习面试</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-04 15:41:44 / 修改时间：16:19:43" itemprop="dateCreated datePublished" datetime="2021-01-04T15:41:44+08:00">2021-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%8E%86/" itemprop="url" rel="index"><span itemprop="name">-一些经历</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="面试情况"><a href="#面试情况" class="headerlink" title="面试情况"></a>面试情况</h1><p>12月29日学长内推spider组，30号电话约面试，31日面试，效率很高好评。</p>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><hr>
+<p>北航硕士哥哥面试，人很好，我很紧张，但是他一直在安慰我，说这些不会也没关系….</p>
+<ul>
+<li><p>介绍一下自己</p>
+<p>balabalabala，说了一堆，介绍了一下本科学习的成果，讲了讲参加算法竞赛的经过</p>
+</li>
+<li><p>对c++的了解程度如何</p>
+<p>不是很了解（？我为什么敢这么回答，竞赛使用c++都是纯c+stl</p>
+</li>
+<li><p>了解过static的作用吗</p>
+<p>分了对变量和类中的成员变量两类回答，主要讲了内存中的位置，类中对象共享，作用域，多文件保护啥的，回答的还行？</p>
+</li>
+<li><p>了解过智能指针吗</p>
+<p>这里只讲了auto….其他的并没了解过，实际上考查的是：share_ptr,auto_ptr,weak_ptr这些Orz</p>
+</li>
+<li><p>讲讲C++11的新特性</p>
+</li>
+</ul>
+<p>auto，for，lambda，nullptr（剩下的我不会</p>
+<ul>
+<li>了解过深浅拷贝的区别吗</li>
+</ul>
+<p>有指针用深拷贝，没指针用浅拷贝会造成指针空悬，工程一般只用深拷贝</p>
+<ul>
+<li>了解过vector的实现吗，容器都有哪些?</li>
+</ul>
+<p>没了解过，比较常见的容器有set，map，stack，queue，deque。</p>
+<ul>
+<li>map的实现了解过吗，可以使用map映射数据结构吗</li>
+</ul>
+<p>红黑树，可以（实际上是不可以….因为map会自动排序，如果使用map要进行重载…..</p>
+<ul>
+<li>如何解决hash冲突，map的时间复杂度是多少，有没有更优的容器？</li>
+</ul>
+<p>使用多模数(后来发现这是竞赛用法，根本不是正确答案，map的单次操作是log(n)的，可以使用unordered_map，是用hash实现的，在数据范围不大的时候可以做到O(1)的复杂度</p>
+<ul>
+<li>讲讲TCP三次握手的过程？</li>
+</ul>
+<p>八股文，背一遍就好了</p>
+<ul>
+<li>为什么一定要三次握手，两次不行吗？</li>
+</ul>
+<p>没答上来….</p>
+<ul>
+<li>结构体内存对齐是怎么做到的，给几个int，char，long询问占多少内存</li>
+</ul>
+<p>不会…..</p>
+<ul>
+<li>听说你对操作系统很了解，能讲讲代码内存在物理中怎么分配的吗？</li>
+</ul>
+<p>讲了下段页处理，然后虚拟内存中分段，使用MMU进行地址映射等等（答的不是很好，明明自己都会，但是紧张全忘了</p>
+<ul>
+<li>c++的强制类型转化static_cast, dynamic_cast, const_cast, reinpreter_cast的区别？</li>
+</ul>
+<p>我压根没听过……</p>
+<ul>
+<li>vector中v[i]与v.at(i)的区别</li>
+</ul>
+<p>如果v非空，A行和B行没有任何区别。如果v为空，B行会抛出std::out_of_range异常，A行的行为未定义。</p>
+<ul>
+<li>代码题：合并两个有序链表</li>
+</ul>
+<p>内心os：？？？我哪儿会啊，最后还是慢慢想着给写出来了，结果写的递归方式，没写递归出口…..我干，改了两次改出来了。</p>
+<p>一面结束，跟我讲等通知，我以为凉了…..结果下午两点leader发微信告诉我下午三点半等待二面，内心窃喜ing</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ul>
+<li>自我介绍一下</li>
+</ul>
+<p>和一面一样的介绍了一下</p>
+<ul>
+<li>代码题：二叉树寻找子树</li>
+</ul>
+<p>内心窃喜，这不傻逼题吗，然后秒了</p>
+<ul>
+<li>在打算法竞赛时，在队内是什么选手，获奖那场队伍过了几个题，有几个与我有关？</li>
+</ul>
+<p>主要学数据结构和想法题，写过一点dp，过了四道题，有两道与我有关，但是铜牌题是队友solo的</p>
+<ul>
+<li>代码题拓展：听说算法竞赛一般不使用指针，请用数组模拟重新实现一遍第一题</li>
+</ul>
+<p>支支吾吾的重写了一遍，leader人很好，一直在引导我。</p>
+<ul>
+<li>使用数组模拟的好处</li>
+</ul>
+<p>效率高，使用指针速度慢，容易被卡常。</p>
+<ul>
+<li>这道题的时间复杂度是多少？</li>
+</ul>
+<p>我想干死我自己，这里居然卡壳了，支支吾吾说了个O(k+m),说完就后悔了，然后仔细分析了一下，O(k * m)，总算改正了。</p>
+<ul>
+<li>为什么使用指针效率更低？</li>
+</ul>
+<p>balabalabala将有指针将多一个寻址过程balabala，结果leader说根本说的不对Orz，很好心的让我再去看看</p>
+<ul>
+<li>学校的情况，能实习多久</li>
+</ul>
+<p>可以长期实习，学校放人。</p>
+<ul>
+<li>等待通知吧</li>
+</ul>
+<p>到此为止，我已经收到了360的hc，等待5号更新hr面，总的来说，询问的比较基础，代码题在leetcode，easy-meduim不等，leader和一面面试官非常友好，第一次面试，涨了不少信心。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/25/%E5%9B%9E%E5%AE%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XiaoyuYe">
+      <meta itemprop="description" content="众人皆醒我独醉">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rain#0x7c00's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/25/%E5%9B%9E%E5%AE%B6/" class="post-title-link" itemprop="url">回家</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-25 17:46:27 / 修改时间：17:52:42" itemprop="dateCreated datePublished" datetime="2020-12-25T17:46:27+08:00">2020-12-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BD%93%E6%88%91%E5%8F%91%E5%91%86%E6%97%B6%E6%88%91%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88/" itemprop="url" rel="index"><span itemprop="name">当我发呆时我在想什么</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天是2020年12月23号，傍晚我坐进了回家的火车。</p>
+<p>距离</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/GDB%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -728,20 +965,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -768,7 +1005,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
