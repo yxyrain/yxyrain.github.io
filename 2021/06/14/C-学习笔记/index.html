@@ -28,7 +28,7 @@
 <meta property="og:description" content="指针注意123456789101112#include &lt;bits&#x2F;stdc++.h&gt;using namespace std;int main()&amp;#123;	int* p;	*p &#x3D; 3;	cout &lt;&lt;	p;	return 0;&amp;#125;  此指针没有被赋予地址，错误  指针偏移 指针的偏移量是很特殊的，指针算术  12345678double*">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-14T05:34:34.000Z">
-<meta property="article:modified_time" content="2021-06-17T13:16:26.362Z">
+<meta property="article:modified_time" content="2021-06-20T13:05:11.630Z">
 <meta property="article:author" content="XiaoyuYe">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-17 21:16:26" itemprop="dateModified" datetime="2021-06-17T21:16:26+08:00">2021-06-17</time>
+                <time title="修改时间：2021-06-20 21:05:11" itemprop="dateModified" datetime="2021-06-20T21:05:11+08:00">2021-06-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -365,7 +365,58 @@
 </ul>
 </li>
 </ul>
-<h3 id="面向对象的三大特性：封装、继承、多态"><a href="#面向对象的三大特性：封装、继承、多态" class="headerlink" title="面向对象的三大特性：封装、继承、多态"></a>面向对象的三大特性：封装、继承、多态</h3>
+<h3 id="名称空间-namespace"><a href="#名称空间-namespace" class="headerlink" title="名称空间 namespace"></a>名称空间 namespace</h3><ul>
+<li>使用原因：使用多个厂商的类库时，可能导致名称冲突<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace Jack &#123;</span><br><span class="line">	double pail;</span><br><span class="line">	void fetch();</span><br><span class="line">	int pal;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Jack::pail &#x3D; 1.0;</span><br></pre></td></tr></table></figure></li>
+<li>using 声明 和 using 编译指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using namespace Jack;&#x2F;&#x2F;编译指令</span><br></pre></td></tr></table></figure></li>
+<li>using 指令嵌套， 创建别名， 和不命名的名称空间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">namespace QAQ &#123;</span><br><span class="line">	namespace QWQ &#123;</span><br><span class="line">		int k;</span><br><span class="line">		int z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">QAQ::QWQ::k &#x3D; 1;</span><br><span class="line">namespace OvO &#x3D; QAQ::QWQ;</span><br><span class="line">using OvO::k &#x3D; 2;</span><br><span class="line"></span><br><span class="line">namespace &#x2F;&#x2F;链接性为内部, 静态变量的替代品</span><br><span class="line">&#123;</span><br><span class="line">	int ice;</span><br><span class="line">	int bandycoot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="面向对象的特性：封装，-继承，-多态，-抽象。"><a href="#面向对象的特性：封装，-继承，-多态，-抽象。" class="headerlink" title="面向对象的特性：封装， 继承， 多态， 抽象。"></a>面向对象的特性：封装， 继承， 多态， 抽象。</h3><ul>
+<li>抽象<ul>
+<li>将问题的本质特征抽象出来，并根据特征来描述解决方案。</li>
+<li>数据抽象是指，只向外界提供关键信息，并隐藏其后台的实现细节，即只表现必要的信息而不呈现细节。</li>
+<li>数据抽象是一种依赖于接口和实现分离的编程（设计）技术。</li>
+</ul>
+</li>
+<li>多态<ul>
+<li>多态性指相同对象收到不同消息或不同对象收到相同消息时产生不同的实现动作</li>
+<li>编译时多态性（静态多态）：通过重写，模板，重载函数实现：先期联编 early binding</li>
+<li>运行时多态性（动态多态）：通过虚函数实现 ：滞后联编 late binding</li>
+</ul>
+</li>
+<li>封装<h3 id="类的访问权限：private、protected、public"><a href="#类的访问权限：private、protected、public" class="headerlink" title="类的访问权限：private、protected、public"></a>类的访问权限：private、protected、public</h3></li>
+<li>private<ul>
+<li>访问控制：使用类对象的程序只能通过公有成员函数（或友元函数）访问对象的私有成员。</li>
+</ul>
+</li>
+<li>public<ul>
+<li>访问控制：使用类对象的程序可以直接访问。</li>
+</ul>
+</li>
+<li>protected<ul>
+<li>访问类型： </li>
+</ul>
+</li>
+</ul>
+<h3 id="类的构造函数和析构函数"><a href="#类的构造函数和析构函数" class="headerlink" title="类的构造函数和析构函数"></a>类的构造函数和析构函数</h3><ul>
+<li>构造函数：<ol>
+<li>构造函数的参数名不能与类成员名称重复。</li>
+<li>使用构造函数可以分为显式和隐式两种。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Stork food &#x3D; stock(&quot;QAQ&quot;, 1, 1.5);&#x2F;&#x2F; 显式调用</span><br><span class="line">Stork food(&quot;QAQ&quot;, 1, 1.5);&#x2F;&#x2F; 隐式调用</span><br></pre></td></tr></table></figure></li>
+<li>创建类对象时构造函数会被自动调用</li>
+<li></li>
+</ol>
+</li>
+<li>析构函数：<ol>
+<li>通常不显式调用析构函数，在类对象过期时会被自动调用。</li>
+</ol>
+</li>
+<li>如果构造函数使用了 new， 那么析构函数要使用 delete 来回收内存。</li>
+</ul>
+<h3 id="类中的-this-指针"><a href="#类中的-this-指针" class="headerlink" title="类中的 this 指针"></a>类中的 this 指针</h3><ul>
+<li>this 指向当前类的对象。</li>
+</ul>
+
     </div>
 
     
@@ -445,7 +496,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%B3%A8%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">指针注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%81%8F%E7%A7%BB"><span class="nav-number">2.</span> <span class="nav-text">指针偏移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%B0%8F%E8%8A%82"><span class="nav-number">3.</span> <span class="nav-text">引用小节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">避免方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%92%8C%E5%85%B7%E4%BD%93%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">实例化和具体化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">3.3.</span> <span class="nav-text">函数的默认值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E8%B0%88%E7%BC%96%E8%AF%91"><span class="nav-number">4.</span> <span class="nav-text">再谈编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="nav-number">4.1.</span> <span class="nav-text">单文件编译</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B8%B8%E5%8C%85%E5%90%AB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">4.1.1.</span> <span class="nav-text">头文件常包含的内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.2.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="nav-number">4.1.3.</span> <span class="nav-text">编译防护方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%8C%81%E7%BB%AD%E6%80%A7-%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%93%BE%E6%8E%A5%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">存储持续性 作用域和链接性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E4%BF%A1%E6%81%AF%E5%9C%A8%E6%96%87%E4%BB%B6%E9%97%B4%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="nav-number">5.1.</span> <span class="nav-text">存储类别如何影响信息在文件间的共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%E7%AC%A6%E5%92%8C%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="nav-number">5.2.</span> <span class="nav-text">说明符和限定符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E9%93%BE%E6%8E%A5%E6%80%A7"><span class="nav-number">5.3.</span> <span class="nav-text">函数和链接性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%A8%E5%AD%98%E6%96%B9%E6%A1%88%E5%92%8C%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D"><span class="nav-number">5.4.</span> <span class="nav-text">储存方案和动态分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%9A%E5%B0%81%E8%A3%85%E3%80%81%E7%BB%A7%E6%89%BF%E3%80%81%E5%A4%9A%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">面向对象的三大特性：封装、继承、多态</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%B3%A8%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">指针注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%81%8F%E7%A7%BB"><span class="nav-number">2.</span> <span class="nav-text">指针偏移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%B0%8F%E8%8A%82"><span class="nav-number">3.</span> <span class="nav-text">引用小节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">避免方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%92%8C%E5%85%B7%E4%BD%93%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">实例化和具体化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">3.3.</span> <span class="nav-text">函数的默认值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E8%B0%88%E7%BC%96%E8%AF%91"><span class="nav-number">4.</span> <span class="nav-text">再谈编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="nav-number">4.1.</span> <span class="nav-text">单文件编译</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B8%B8%E5%8C%85%E5%90%AB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">4.1.1.</span> <span class="nav-text">头文件常包含的内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.2.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="nav-number">4.1.3.</span> <span class="nav-text">编译防护方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%8C%81%E7%BB%AD%E6%80%A7-%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%93%BE%E6%8E%A5%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">存储持续性 作用域和链接性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%B1%BB%E5%88%AB%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E4%BF%A1%E6%81%AF%E5%9C%A8%E6%96%87%E4%BB%B6%E9%97%B4%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="nav-number">5.1.</span> <span class="nav-text">存储类别如何影响信息在文件间的共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%E7%AC%A6%E5%92%8C%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="nav-number">5.2.</span> <span class="nav-text">说明符和限定符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%92%8C%E9%93%BE%E6%8E%A5%E6%80%A7"><span class="nav-number">5.3.</span> <span class="nav-text">函数和链接性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%82%A8%E5%AD%98%E6%96%B9%E6%A1%88%E5%92%8C%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D"><span class="nav-number">5.4.</span> <span class="nav-text">储存方案和动态分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4-namespace"><span class="nav-number">6.</span> <span class="nav-text">名称空间 namespace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%9A%E5%B0%81%E8%A3%85%EF%BC%8C-%E7%BB%A7%E6%89%BF%EF%BC%8C-%E5%A4%9A%E6%80%81%EF%BC%8C-%E6%8A%BD%E8%B1%A1%E3%80%82"><span class="nav-number">7.</span> <span class="nav-text">面向对象的特性：封装， 继承， 多态， 抽象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%EF%BC%9Aprivate%E3%80%81protected%E3%80%81public"><span class="nav-number">8.</span> <span class="nav-text">类的访问权限：private、protected、public</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">类的构造函数和析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E4%B8%AD%E7%9A%84-this-%E6%8C%87%E9%92%88"><span class="nav-number">10.</span> <span class="nav-text">类中的 this 指针</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
