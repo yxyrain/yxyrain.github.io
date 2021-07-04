@@ -432,7 +432,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-23 23:37:16" itemprop="dateModified" datetime="2021-06-23T23:37:16+08:00">2021-06-23</time>
+                <time title="修改时间：2021-07-04 18:19:40" itemprop="dateModified" datetime="2021-07-04T18:19:40+08:00">2021-07-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -459,294 +459,14 @@
 <blockquote>
 <p>此指针没有被赋予地址，错误</p>
 </blockquote>
-<h3 id="指针偏移"><a href="#指针偏移" class="headerlink" title="指针偏移"></a>指针偏移</h3><blockquote>
-<p>指针的偏移量是很特殊的，指针算术</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">double* p3 &#x3D; new double [3];</span><br><span class="line">p3[0] &#x3D; 0.2;</span><br><span class="line">p3[1] &#x3D; 0.5;</span><br><span class="line">p3[2] &#x3D; 0.8;</span><br><span class="line"></span><br><span class="line">p3 ++;      &#x2F;&#x2F;此时 相当于真正地址加 sizeof(double)</span><br><span class="line">p3 --;      &#x2F;&#x2F;此时 相当于真正地址减 sizeof(double)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="引用小节"><a href="#引用小节" class="headerlink" title="引用小节"></a>引用小节</h3><blockquote>
-<p>int &amp; n; //定义一个指向 int 的引用<br>引用更接近 const 指针</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int &amp; rodents &#x3D; rats;</span><br><span class="line">int * const pr &#x3D; &amp;rats;&#x2F;&#x2F;这两种写法是相同的</span><br></pre></td></tr></table></figure>
-<p>使用引用的优点：</p>
-<ul>
-<li>效率高，避免使用临时变量存数值</li>
-<li>节省资源，减少内存消耗，不生成副本</li>
-</ul>
-<p>使用引用要注意的地方：</p>
-<ul>
-<li>避免返回函数终止时不再存在的内存单元引用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const free_throws &amp; clone2(free_throws &amp; ft)</span><br><span class="line">&#123;</span><br><span class="line">	free_throws newguy;</span><br><span class="line">	nweguy &#x3D; ft;</span><br><span class="line">	return newguy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这段代码就有很大的风险，因为该函数返回一个指向临时变量的引用，函数运行结束该变量会被释放。</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="避免方法"><a href="#避免方法" class="headerlink" title="避免方法"></a>避免方法</h4><ul>
-<li>使用 new 来分配内存空间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const free_throws &amp; clone2(free_throws &amp; ft)</span><br><span class="line">&#123;</span><br><span class="line">	free_throws * pt;</span><br><span class="line">	* pt &#x3D; ft;</span><br><span class="line">	return *pt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>不过这么写也有缺点，因为在调用函数时指针相当于被隐藏了，所以无法释放指针的内存空间，这时，使用 auto_ptr, unique_ptr 就可以解决这个问题，完成自动释放。</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="实例化和具体化"><a href="#实例化和具体化" class="headerlink" title="实例化和具体化"></a>实例化和具体化</h4><blockquote>
-<p>了解实例化和具体化的前提是熟悉模板。</p>
-</blockquote>
-<ul>
-<li>隐式实例化<ul>
-<li>通过编译器自己推测判断要实例化的类型</li>
-</ul>
-</li>
-<li>显式实例化<ul>
-<li>通过名字可见，就是清楚的表明你要实例化的类型</li>
-</ul>
-</li>
-<li>显式具体化<ul>
-<li>因为对于某些特殊类型，可能不适合模板实现，需要重新定义实现，此时就是使用显示具体化的场景<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt; &#x2F;&#x2F;函数模板实现</span><br><span class="line">void swap(T &amp;a, T &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    T temp;</span><br><span class="line">    temp &#x3D; a;</span><br><span class="line">    a &#x3D; b;</span><br><span class="line">    b &#x3D; temp;</span><br><span class="line">&#125;</span><br><span class="line">template void swap&lt;int&gt;(int ,int);&#x2F;&#x2F;显式实例化</span><br><span class="line">template &lt;&gt; void Swap&lt;job&gt; (job &amp;, job &amp;);&#x2F;&#x2F;显式具体化，为job类专门显式的定义一个函数。</span><br></pre></td></tr></table></figure>
-<h4 id="函数的默认值"><a href="#函数的默认值" class="headerlink" title="函数的默认值"></a>函数的默认值</h4></li>
-</ul>
-</li>
-<li>可以给函数构造默认值，例如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int add(int a &#x3D; 1, int b &#x3D; 2);</span><br></pre></td></tr></table></figure>
-此时函数可以不用传入值，直接执行，但只能在参数列表从右到左提供默认参数。<h3 id="再谈编译"><a href="#再谈编译" class="headerlink" title="再谈编译"></a>再谈编译</h3><h4 id="单文件编译"><a href="#单文件编译" class="headerlink" title="单文件编译"></a>单文件编译</h4><h5 id="头文件常包含的内容"><a href="#头文件常包含的内容" class="headerlink" title="头文件常包含的内容"></a>头文件常包含的内容</h5></li>
-<li>函数原型</li>
-<li>使用 #define 或 const 定义的符号常量</li>
-<li>结构声明</li>
-<li>类声明</li>
-<li>模板声明</li>
-<li>内联函数 inline<h5 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h5></li>
-</ul>
-<ol>
-<li>输入命令 CC file1.cpp file2.cpp</li>
-<li>预处理器将包含的文件与源代码文件合并</li>
-<li>编译器创建每个源代码文件的目标代码文件</li>
-<li>链接程序将目标代码文件，库代码和启动代码合并，生成可执行文件</li>
-</ol>
-<h5 id="编译防护方案"><a href="#编译防护方案" class="headerlink" title="编译防护方案"></a>编译防护方案</h5><ul>
-<li>使用 #ifndef 防止重复编译<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#ifndef QAQ_H_</span><br><span class="line">#define QAQ_H_</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>此种方式代表如果从未定义过 QAQ_H_ 这个变量，才执行 #ifndef QAQ_H_ 到 #endif 之间的语句，由于第一次编译时会 #define QAQ_H_ 所以多次编译时，此模块只会执行一次，防止了重复编译。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="存储持续性-作用域和链接性"><a href="#存储持续性-作用域和链接性" class="headerlink" title="存储持续性 作用域和链接性"></a>存储持续性 作用域和链接性</h3><h4 id="存储类别如何影响信息在文件间的共享"><a href="#存储类别如何影响信息在文件间的共享" class="headerlink" title="存储类别如何影响信息在文件间的共享"></a>存储类别如何影响信息在文件间的共享</h4><ul>
-<li>自动存储持续性<ul>
-<li>代表：局部变量，无链接性</li>
-<li>存储地点：留出一段内存，构造一个栈，使用结束后，将其释放</li>
-<li>寿命短，代码块结束便被释放</li>
-<li>register ： 以前是建议 CPU 寄存器存储变量，现在加不加一样</li>
-</ul>
-</li>
-<li>静态存储持续性<ul>
-<li>代表：全局变量 z ， static 变量 q ， 区间 static 变量 k <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int z &#x3D; 0;&#x2F;&#x2F;外部链接性</span><br><span class="line">static int q &#x3D; 0;&#x2F;&#x2F;内部链接性</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i &#x3D; 1; i &lt;&#x3D; 6; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		static int k &#x3D; 1;&#x2F;&#x2F;无链接性 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>特点：默认零初始化， 寿命长，一直持续到进程终结</li>
-<li>储存地点：固定的内存块，不使用栈进行操作</li>
-<li>静态的持续性，外部的链接性：<ul>
-<li>C++ 的 单定义规则(ODR)：变量只能有一次定义机会</li>
-<li>两种定义声明<ol>
-<li>定义声明：int a;</li>
-<li>引用声明：extern int a;</li>
-</ol>
-</li>
-<li>使用方法：多文件使用外部变量时，用关键字 extern 声明</li>
-</ul>
-</li>
-<li>C++的作用域解析运算符 $::$ ， 放在变量名前代表全局版本的变量</li>
-<li>static 限定符:当用于作用域为全文件的变量时，会使该变量的链接性变为内部链接性<ul>
-<li>用法：在两个文件中创建名称相同的变量显然是不合乎标准的，这时，使用 static 会使另一个文件的常规外部变量隐藏。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="说明符和限定符"><a href="#说明符和限定符" class="headerlink" title="说明符和限定符"></a>说明符和限定符</h4><ul>
-<li>cv-限定符<ol>
-<li>const<ul>
-<li>表明内存被初始化后，程序无法对其进行更改</li>
-<li>在 C++ 中， const 全局变量的链接性是内部的</li>
-<li>const 的内部链接性可以用 extern 进行覆盖</li>
-</ul>
-</li>
-<li>volatile<ul>
-<li>表明即使程序代码没有对内存进行修改，值依然有可能变化，例如指针指向硬件位置，其中包含了来自串行端口的时间信息，可以避免程序将这个值缓存到寄存器中，从而出现两次同样的值</li>
-</ul>
-</li>
-<li>mutable<ul>
-<li>可以用 mutable 指出，即使结构体/类变量为 const ，其中的某个成员依然可以被修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct data</span><br><span class="line">&#123;</span><br><span class="line">	char name[30];</span><br><span class="line">	mutable int accesses;</span><br><span class="line">&#125;</span><br><span class="line">const data veep &#x3D; &#123;&quot;QAQ&quot;, 3&#125;;</span><br><span class="line">strcpy(veep.name, &quot;QWQ&quot;); &#x2F;&#x2F;not allowed，因为 veep 变量为 const 类型</span><br><span class="line">veep.accesses++;&#x2F;&#x2F;allowed， 因为 accesses 为 mutable int 所以可以更改</span><br></pre></td></tr></table></figure>
-<h4 id="函数和链接性"><a href="#函数和链接性" class="headerlink" title="函数和链接性"></a>函数和链接性</h4></li>
-</ul>
-</li>
-</ol>
-</li>
-<li>所有函数的储存链接性都自动设为静态，且链接性默认为外部链接</li>
-<li>可以使用 extern 来说明函数是另外一个文件定义的</li>
-<li>可以使用 static 将函数的链接性设置成内部</li>
-<li>内联函数不受单定义规则的约束</li>
-</ul>
-<h4 id="储存方案和动态分配"><a href="#储存方案和动态分配" class="headerlink" title="储存方案和动态分配"></a>储存方案和动态分配</h4><ul>
-<li>使用 new / malloc() 函数分配的内存被称为动态内存</li>
-<li>编译器使用三块独立的内存<ul>
-<li>静态变量（可能再细分）</li>
-<li>自动变量</li>
-<li>动态存储</li>
-</ul>
-</li>
-<li>new 的使用<ul>
-<li>使用 new 运算符初始化  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int *p &#x3D; new int (6);</span><br><span class="line">int *p &#x3D; new int &#123;6&#125;; &#x2F;&#x2F; C++ 11</span><br></pre></td></tr></table></figure></li>
-<li>new 失败时，返回异常 std::bad_alloc</li>
-<li>new 运算符，函数，替换函数  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void * operator new (std::size_t);&#x2F;&#x2F;分配函数</span><br><span class="line">void * operator new[] (std::size_t);</span><br><span class="line">void * operator delete(void *);&#x2F;&#x2F;释放函数</span><br><span class="line">void * operator delete[] (void *);</span><br></pre></td></tr></table></figure></li>
-<li>定位 new 运算符<ul>
-<li>定位 new 作用为指定一个位置获取内存，但要注意，用定位 new 获取的内存无法被 delete 释放，delete 只能释放 heap（堆） 中获取的内存<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">char buffer1[50];</span><br><span class="line">char buffer2[500];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	p1 &#x3D; new (buffer1) int ;</span><br><span class="line">	p2 &#x3D; new (buffer2) int[20];</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-上述代码代表在 buffer1 的地址上创建 p1 ， 在buffer2 的地址上 创建 p2 数组</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="名称空间-namespace"><a href="#名称空间-namespace" class="headerlink" title="名称空间 namespace"></a>名称空间 namespace</h3><ul>
-<li>使用原因：使用多个厂商的类库时，可能导致名称冲突<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace Jack &#123;</span><br><span class="line">	double pail;</span><br><span class="line">	void fetch();</span><br><span class="line">	int pal;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Jack::pail &#x3D; 1.0;</span><br></pre></td></tr></table></figure></li>
-<li>using 声明 和 using 编译指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using namespace Jack;&#x2F;&#x2F;编译指令</span><br></pre></td></tr></table></figure></li>
-<li>using 指令嵌套， 创建别名， 和不命名的名称空间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">namespace QAQ &#123;</span><br><span class="line">	namespace QWQ &#123;</span><br><span class="line">		int k;</span><br><span class="line">		int z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">QAQ::QWQ::k &#x3D; 1;</span><br><span class="line">namespace OvO &#x3D; QAQ::QWQ;</span><br><span class="line">using OvO::k &#x3D; 2;</span><br><span class="line"></span><br><span class="line">namespace &#x2F;&#x2F;链接性为内部, 静态变量的替代品</span><br><span class="line">&#123;</span><br><span class="line">	int ice;</span><br><span class="line">	int bandycoot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="面向对象的特性：封装，-继承，-多态，-抽象。"><a href="#面向对象的特性：封装，-继承，-多态，-抽象。" class="headerlink" title="面向对象的特性：封装， 继承， 多态， 抽象。"></a>面向对象的特性：封装， 继承， 多态， 抽象。</h3><ul>
-<li>抽象<ul>
-<li>将问题的本质特征抽象出来，并根据特征来描述解决方案。</li>
-<li>数据抽象是指，只向外界提供关键信息，并隐藏其后台的实现细节，即只表现必要的信息而不呈现细节。</li>
-<li>数据抽象是一种依赖于接口和实现分离的编程（设计）技术。</li>
-</ul>
-</li>
-<li>多态<ul>
-<li>多态性指相同对象收到不同消息或不同对象收到相同消息时产生不同的实现动作</li>
-<li>编译时多态性（静态多态）：通过重写，模板，重载函数实现：先期联编 early binding</li>
-<li>运行时多态性（动态多态）：通过虚函数实现 ：滞后联编 late binding</li>
-</ul>
-</li>
-<li>封装<h3 id="类的访问权限：private、protected、public"><a href="#类的访问权限：private、protected、public" class="headerlink" title="类的访问权限：private、protected、public"></a>类的访问权限：private、protected、public</h3></li>
-<li>private<ul>
-<li>访问控制：使用类对象的程序只能通过公有成员函数（或友元函数）访问对象的私有成员。</li>
-</ul>
-</li>
-<li>public<ul>
-<li>访问控制：使用类对象的程序可以直接访问。</li>
-</ul>
-</li>
-<li>protected<ul>
-<li>访问类型： </li>
-</ul>
-</li>
-</ul>
-<h3 id="类的构造函数和析构函数"><a href="#类的构造函数和析构函数" class="headerlink" title="类的构造函数和析构函数"></a>类的构造函数和析构函数</h3><ul>
-<li>构造函数：<ol>
-<li>构造函数的参数名不能与类成员名称重复。</li>
-<li>使用构造函数可以分为显式和隐式两种。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Stork food &#x3D; stock(&quot;QAQ&quot;, 1, 1.5);&#x2F;&#x2F; 显式调用</span><br><span class="line">Stork food(&quot;QAQ&quot;, 1, 1.5);&#x2F;&#x2F; 隐式调用</span><br></pre></td></tr></table></figure></li>
-<li>创建类对象时构造函数会被自动调用`</li>
-</ol>
-</li>
-<li>析构函数：<ol>
-<li>通常不显式调用析构函数，在类对象过期时会被自动调用。</li>
-</ol>
-</li>
-<li>如果构造函数使用了 new， 那么析构函数要使用 delete 来回收内存。</li>
-</ul>
-<h3 id="类中的-this-指针"><a href="#类中的-this-指针" class="headerlink" title="类中的 this 指针"></a>类中的 this 指针</h3><ul>
-<li>this 指向当前类的对象。</li>
-</ul>
-<h3 id="作用域为类的常量"><a href="#作用域为类的常量" class="headerlink" title="作用域为类的常量"></a>作用域为类的常量</h3><ul>
-<li><p>枚举</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enum&#123;months &#x3D; 12&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可惜，这种声明并不会创建类数据成员，所有对象中都不会包含枚举，months 也只是一个符号名称，在作用域为整个类的代码中，编译器用 12 替换他</li>
-</ul>
-</li>
-<li><p>类中的 static 常量</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class QAQ</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	static const int Months &#x3D; 12;</span><br><span class="line">	double costs[Months];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这将创建 Months 变量，并且将于其他静态变量存在一起，而不是对象中，并且此变量被所有 QAQ 对象共享。  </li>
-</ul>
-</li>
-</ul>
-<h3 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h3><ul>
-<li>写法  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Time Time::operator+(const Time &amp; t) const</span><br><span class="line">&#123;</span><br><span class="line">	Time sum;</span><br><span class="line">	sum.minutes &#x3D; minutes + t.minutes;</span><br><span class="line">	sum.hours &#x3D; hours + t.hours + sum.minutes &#x2F; 60;</span><br><span class="line">	sum.minutes %&#x3D; 60;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>重载限制<ol>
-<li>重载后的运算符必须至少有一个是用户定义的类型，为了用户防止为标准类型重载</li>
-<li>重载运算符不能违反原来的句法规则，同时不能修改运算符的优先级。</li>
-<li>不能创建新运算符</li>
-<li>有些运算符无法重载，例如 ., sizeof， ::等。</li>
-<li>有些运算符只能通过成员函数进行重载， =， (), [], -&gt;。</li>
-</ol>
-</li>
-<li>友元<ol>
-<li>友元函数</li>
-<li>友元类</li>
-<li>友元成员函数</li>
-</ol>
-</li>
-<li>友元函数<ul>
-<li>让函数成为类的友元，可以赋予该函数与类的成员函数相同的访问权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A &#x3D; B * 2.75;</span><br><span class="line">A &#x3D; B.operator*(2.75);</span><br><span class="line">A &#x3D; 2.75 * B; &#x2F;&#x2F; not allowed , can&#39;t correspond to a member function</span><br></pre></td></tr></table></figure></li>
-<li>上面那段代码就暴露出了成员函数重载的缺点，将 2.75 作为操作数，无法找到相匹配的成员函数，于是我们引入提供显式参数的非成员函数重载。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">friend Time operator*(double m, const Time &amp; t);</span><br></pre></td></tr></table></figure></li>
-<li>重载运算符：作为成员函数还是非成员函数<pre><code> + 对于加法运算符，需要两个操作数，对于成员函数来说，第一个操作数为 this 指针
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Time operator+(const Time &amp; t) const;</span><br><span class="line">friend Time operator+(const Time &amp; t1, const Time &amp; t2);</span><br></pre></td></tr></table></figure></code></pre>
-<h4 id="类和动态内存分配"><a href="#类和动态内存分配" class="headerlink" title="类和动态内存分配"></a>类和动态内存分配</h4></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>介绍如何对类使用 new 和 delete 以及如何处理动态内存带来的问题</p>
-</blockquote>
-<ul>
-<li>不能在类声明中初始化静态成员变量</li>
-<li>但如果静态成员成员是 const 整数类型或枚举型，则可以在类中初始化。</li>
-<li>类对象作为函数参数传递时，将会产生对象的副本，而这个副本是调用类中的拷贝构造函数实现的，如果类中没有自定义拷贝构造，编译器会自动生成一个缺省的函数，该函数有以下特点：<ul>
-<li>对于基本类型的成员变量，按字节复制</li>
-<li>对于类类型的成员变量(成员子对象)，将自动调用相应类的拷贝构造函数来初始化</li>
-<li>指针只是简单的赋值，而不会自动分配内存。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>当退出该函数时,副本将调用析构函数，删除该指针,指针所指向内存也已被释放。将原始对象只保留了一个指针值。当在类中释放对象再次调用析构函数，会出现double free 的错误。</p>
-</blockquote>
-<p>两种解决方式：</p>
-<ol>
-<li>自定义拷贝构造函数。</li>
-<li>将函数对象作为引用传递，引用时操作不会释放对象。</li>
-</ol>
-<h4 id="特殊成员函数"><a href="#特殊成员函数" class="headerlink" title="特殊成员函数"></a>特殊成员函数</h4><ol>
-<li>默认构造函数<ul>
-<li>如果没有提供任何构造函数，将创造默认构造函数，创建的对象，值是未知的。</li>
-</ul>
-</li>
-<li>默认析构函数 </li>
-<li>复制构造函数<ul>
-<li>用于将一个对象赋值到新创建的对象中。</li>
-<li>用于初始化过程中，而不是常规的赋值过程中。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class_name(const Class_name &amp;);</span><br></pre></td></tr></table></figure></li>
-<li>何时调用复制构造函数 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBad ditto(motto);</span><br><span class="line">StringBad metto  &#x3D; motto;</span><br><span class="line">StringBad also &#x3D; String(motto);</span><br><span class="line">StringBad * pStringBad &#x3D; new StringBad(motto);</span><br></pre></td></tr></table></figure></li>
-<li>默认复制函数的功能<ul>
-<li>调用默认复制构造函数将逐个复制非静态成员（浅复制），复制的是成员的值，在类中有指针时调用默认复制函数非常危险。</li>
-</ul>
-</li>
-<li>定义一个显式复制构造函数解决问题 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBad::StringBad(const StringBad &amp; st)</span><br><span class="line">&#123;</span><br><span class="line">    num_strings++;</span><br><span class="line">    len &#x3D; st.len;</span><br><span class="line">    str &#x3D; new char [len + 1];</span><br><span class="line">    std::strcpy(str, st.str);</span><br><span class="line">    cout &lt;&lt; num_strings;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以上为深复制，也就是不是单纯的数据复制，而是使用 new 进行初始化的，指向数据的指针。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>赋值运算符<ul>
-<li>和默认复制构造函数的问题几乎一致，使用的是单纯的数据复制。</li>
-</ul>
-</li>
-<li>地址运算符</li>
-</ol>
-<h4 id="静态类成员函数"><a href="#静态类成员函数" class="headerlink" title="静态类成员函数"></a>静态类成员函数</h4><blockquote>
-<p>可以对成员函数添加关键字 static 使其变成静态成员函数</p>
-</blockquote>
-<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
-<li>无法通过对象调用静态成员函数，甚至无法使用 this 指针。</li>
-<li>如果是 public 定义的，那么可以使用类名和作用域解析符来调用</li>
-<li>由于静态成员函数不与特定的对象关联，因此只能使用静态数据类型</li>
-</ul>
-<h4 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/14/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1015,10 +735,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-04 15:41:44 / 修改时间：16:19:43" itemprop="dateCreated datePublished" datetime="2021-01-04T15:41:44+08:00">2021-01-04</time>
+              <time title="创建时间：2021-01-04 15:41:44" itemprop="dateCreated datePublished" datetime="2021-01-04T15:41:44+08:00">2021-01-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-04 18:19:42" itemprop="dateModified" datetime="2021-07-04T18:19:42+08:00">2021-07-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1041,107 +767,14 @@
 
       
           <h1 id="面试情况"><a href="#面试情况" class="headerlink" title="面试情况"></a>面试情况</h1><p>12月29日学长内推spider组，30号电话约面试，31日面试，效率很高好评。</p>
-<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><hr>
-<p>北航硕士哥哥面试，人很好，我很紧张，但是他一直在安慰我，说这些不会也没关系….</p>
-<ul>
-<li><p>介绍一下自己</p>
-<p>balabalabala，说了一堆，介绍了一下本科学习的成果，讲了讲参加算法竞赛的经过</p>
-</li>
-<li><p>对c++的了解程度如何</p>
-<p>不是很了解（？我为什么敢这么回答，竞赛使用c++都是纯c+stl</p>
-</li>
-<li><p>了解过static的作用吗</p>
-<p>分了对变量和类中的成员变量两类回答，主要讲了内存中的位置，类中对象共享，作用域，多文件保护啥的，回答的还行？</p>
-</li>
-<li><p>了解过智能指针吗</p>
-<p>这里只讲了auto….其他的并没了解过，实际上考查的是：share_ptr,auto_ptr,weak_ptr这些Orz</p>
-</li>
-<li><p>讲讲C++11的新特性</p>
-</li>
-</ul>
-<p>auto，for，lambda，nullptr（剩下的我不会</p>
-<ul>
-<li>了解过深浅拷贝的区别吗</li>
-</ul>
-<p>有指针用深拷贝，没指针用浅拷贝会造成指针空悬，工程一般只用深拷贝</p>
-<ul>
-<li>了解过vector的实现吗，容器都有哪些?</li>
-</ul>
-<p>没了解过，比较常见的容器有set，map，stack，queue，deque。</p>
-<ul>
-<li>map的实现了解过吗，可以使用map映射数据结构吗</li>
-</ul>
-<p>红黑树，可以（实际上是不可以….因为map会自动排序，如果使用map要进行重载…..</p>
-<ul>
-<li>如何解决hash冲突，map的时间复杂度是多少，有没有更优的容器？</li>
-</ul>
-<p>使用多模数(后来发现这是竞赛用法，根本不是正确答案，map的单次操作是log(n)的，可以使用unordered_map，是用hash实现的，在数据范围不大的时候可以做到O(1)的复杂度</p>
-<ul>
-<li>讲讲TCP三次握手的过程？</li>
-</ul>
-<p>八股文，背一遍就好了</p>
-<ul>
-<li>为什么一定要三次握手，两次不行吗？</li>
-</ul>
-<p>没答上来….</p>
-<ul>
-<li>结构体内存对齐是怎么做到的，给几个int，char，long询问占多少内存</li>
-</ul>
-<p>不会…..</p>
-<ul>
-<li>听说你对操作系统很了解，能讲讲代码内存在物理中怎么分配的吗？</li>
-</ul>
-<p>讲了下段页处理，然后虚拟内存中分段，使用MMU进行地址映射等等（答的不是很好，明明自己都会，但是紧张全忘了</p>
-<ul>
-<li>c++的强制类型转化static_cast, dynamic_cast, const_cast, reinpreter_cast的区别？</li>
-</ul>
-<p>我压根没听过……</p>
-<ul>
-<li>vector中v[i]与v.at(i)的区别</li>
-</ul>
-<p>如果v非空，A行和B行没有任何区别。如果v为空，B行会抛出std::out_of_range异常，A行的行为未定义。</p>
-<ul>
-<li>代码题：合并两个有序链表</li>
-</ul>
-<p>内心os：？？？我哪儿会啊，最后还是慢慢想着给写出来了，结果写的递归方式，没写递归出口…..我干，改了两次改出来了。</p>
-<p>一面结束，跟我讲等通知，我以为凉了…..结果下午两点leader发微信告诉我下午三点半等待二面，内心窃喜ing</p>
-<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ul>
-<li>自我介绍一下</li>
-</ul>
-<p>和一面一样的介绍了一下</p>
-<ul>
-<li>代码题：二叉树寻找子树</li>
-</ul>
-<p>内心窃喜，这不傻逼题吗，然后秒了</p>
-<ul>
-<li>在打算法竞赛时，在队内是什么选手，获奖那场队伍过了几个题，有几个与我有关？</li>
-</ul>
-<p>主要学数据结构和想法题，写过一点dp，过了四道题，有两道与我有关，但是铜牌题是队友solo的</p>
-<ul>
-<li>代码题拓展：听说算法竞赛一般不使用指针，请用数组模拟重新实现一遍第一题</li>
-</ul>
-<p>支支吾吾的重写了一遍，leader人很好，一直在引导我。</p>
-<ul>
-<li>使用数组模拟的好处</li>
-</ul>
-<p>效率高，使用指针速度慢，容易被卡常。</p>
-<ul>
-<li>这道题的时间复杂度是多少？</li>
-</ul>
-<p>我想干死我自己，这里居然卡壳了，支支吾吾说了个O(k+m),说完就后悔了，然后仔细分析了一下，O(k * m)，总算改正了。</p>
-<ul>
-<li>为什么使用指针效率更低？</li>
-</ul>
-<p>balabalabala将有指针将多一个寻址过程balabala，结果leader说根本说的不对Orz，很好心的让我再去看看</p>
-<ul>
-<li>学校的情况，能实习多久</li>
-</ul>
-<p>可以长期实习，学校放人。</p>
-<ul>
-<li>等待通知吧</li>
-</ul>
-<p>到此为止，我已经收到了360的hc，等待5号更新hr面，总的来说，询问的比较基础，代码题在leetcode，easy-meduim不等，leader和一面面试官非常友好，第一次面试，涨了不少信心。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/04/360%E6%90%9C%E7%B4%A2%E6%9C%8D%E5%8A%A1%E5%8C%BA%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
